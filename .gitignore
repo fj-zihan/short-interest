@@ -2,3 +2,5 @@
 .tmp_dagster_home_*
 .tmp_dagster_*
 __pycache__/
+.env
+env

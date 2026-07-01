@@ -10,7 +10,6 @@ from dagster import build_asset_context
 
 from risk_models.us_fundamental.short_interest.assets.short_interest_raw import short_interest_raw
 from risk_models.us_fundamental.short_interest.assets.short_interest_factor import (
-    short_interest_factor,
     short_interest_factor_full,
     short_interest_factor_incremental,
 )
@@ -63,23 +62,13 @@ def test_raw_columns():
 
 
 # ---------------------------------------------------------------------------
-# short_interest_factor (live, latest date)
+# short_interest_factor_incremental (live, latest date)
 # ---------------------------------------------------------------------------
 
-def test_factor_zscore():
-    result = short_interest_factor(build_asset_context(), _df(ONE_DATE))
+def test_incremental_zscore():
+    result = short_interest_factor_incremental(build_asset_context(), _df(ONE_DATE))
     assert abs(result["si_factor"].mean()) < 1e-10
     assert abs(result["si_factor"].std() - 1.0) < 1e-10
-
-def test_factor_latest_date_only():
-    result = short_interest_factor(build_asset_context(), _df(TWO_DATES))
-    assert (result["settlement_date"] == pd.Timestamp("2024-12-31")).all()
-    assert len(result) == 4
-
-
-# ---------------------------------------------------------------------------
-# short_interest_factor_incremental
-# ---------------------------------------------------------------------------
 
 def test_incremental_latest_date_only():
     result = short_interest_factor_incremental(build_asset_context(), _df(TWO_DATES))
