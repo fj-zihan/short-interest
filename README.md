@@ -23,7 +23,7 @@ The pipeline supports: - Full backfill computation across all historical settlem
 
 All assets have been verified end-to-end locally using Massive API and LocalStack (S3 emulation).
 
-![](images/clipboard-1742678679.png)
+<img width="987" height="291" alt="截屏2026-07-01 19 02 08" src="https://github.com/user-attachments/assets/8beaa457-7a77-4185-a214-6925a2811ded" />
 
 ------------------------------------------------------------------------
 
